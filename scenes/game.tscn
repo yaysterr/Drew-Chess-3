@@ -1,0 +1,1034 @@
+[gd_scene format=3 uid="uid://qw02dhlx5yle"]
+
+[ext_resource type="Script" uid="uid://0i7dt3lx7x0f" path="res://scripts/game.gd" id="1_di1s4"]
+[ext_resource type="Script" uid="uid://dggkufpqi2i3k" path="res://scripts/board.gd" id="1_n6plr"]
+[ext_resource type="FontFile" uid="uid://duirqv7wous0v" path="res://fonts/PressStart2P-Regular.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://negvhxcgxvsh" path="res://pieces_new/W-King64x64.png" id="7_wking"]
+[ext_resource type="Texture2D" uid="uid://cge8p5nxcucyr" path="res://pieces_new/B-king64x64.png" id="8_bking"]
+[ext_resource type="Script" uid="uid://572fwn6i0dq7" path="res://scripts/card_visual.gd" id="9_cardvis"]
+[ext_resource type="Script" uid="uid://dooxirpgu4k1y" path="res://scripts/sp_pips.gd" id="10_sppips"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.196, 0.161, 0.278, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_turnlabel"]
+bg_color = Color(0.094, 0.063, 0.137, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.71, 0.439, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.196, 0.161, 0.278, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.71, 0.439, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.267, 0.22, 0.38, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8, 0.58, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_primary"]
+bg_color = Color(1, 0.71, 0.439, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.89, 0.76, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_primary_hover"]
+bg_color = Color(1, 0.8, 0.58, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.93, 0.84, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backmenu"]
+bg_color = Color(0.094, 0.063, 0.137, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.71, 0.439, 0.7)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backmenu_hover"]
+bg_color = Color(0.196, 0.161, 0.278, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.8, 0.58, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0.094, 0.063, 0.137, 0.92)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.71, 0.439, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_side_card"]
+bg_color = Color(0.196, 0.161, 0.278, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.71, 0.439, 0.85)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_side_card_hover"]
+bg_color = Color(0.267, 0.22, 0.38, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.86, 0.58, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Game" type="Node2D" unique_id=1488252744]
+script = ExtResource("1_di1s4")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1399856017]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 800.0
+color = Color(0.122, 0.094, 0.176, 1)
+
+[node name="InnerPanel" type="Panel" parent="." unique_id=314447280]
+offset_left = 60.0
+offset_top = 90.0
+offset_right = 1220.0
+offset_bottom = 710.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="BoardContainer" type="Node2D" parent="." unique_id=1480984940]
+position = Vector2(376, 104)
+
+[node name="Board" type="Node2D" parent="BoardContainer" unique_id=626525005]
+script = ExtResource("1_n6plr")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=262165803]
+
+[node name="TurnPanel" type="Panel" parent="UI" unique_id=2089822431]
+offset_left = 460.0
+offset_top = 24.0
+offset_right = 820.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="TurnLabel" type="Label" parent="UI/TurnPanel" unique_id=160677695]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 360.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 13
+text = "ROUND 1  ·  TURN 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LogPanel" type="Panel" parent="UI" unique_id=360724120]
+offset_left = 24.0
+offset_top = 104.0
+offset_right = 276.0
+offset_bottom = 486.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="LogHeaderLabel" type="Label" parent="UI/LogPanel" unique_id=10308138]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 236.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.85)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 10
+text = "TURN LOG"
+
+[node name="LogHeaderRule" type="ColorRect" parent="UI/LogPanel" unique_id=132321693]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 236.0
+offset_bottom = 37.0
+color = Color(1, 0.71, 0.439, 0.25)
+
+[node name="LogScroll" type="ScrollContainer" parent="UI/LogPanel" unique_id=702944830]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 44.0
+offset_right = 236.0
+offset_bottom = 366.0
+horizontal_scroll_mode = 0
+
+[node name="LogEntries" type="VBoxContainer" parent="UI/LogPanel/LogScroll" unique_id=320381525]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="GraveyardPanel" type="Panel" parent="UI" unique_id=1606868856]
+offset_left = 24.0
+offset_top = 502.0
+offset_right = 276.0
+offset_bottom = 632.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="GraveyardHeaderLabel" type="Label" parent="UI/GraveyardPanel" unique_id=1981256660]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 236.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.85)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+text = "GRAVEYARD"
+
+[node name="GraveyardHeaderRule" type="ColorRect" parent="UI/GraveyardPanel" unique_id=1824525327]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 30.0
+offset_right = 236.0
+offset_bottom = 31.0
+color = Color(1, 0.71, 0.439, 0.25)
+
+[node name="WhiteGraveyardLabel" type="Label" parent="UI/GraveyardPanel" unique_id=1768334099]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 236.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.6)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 6
+text = "WHITE"
+
+[node name="WhiteGraveyardFlow" type="HBoxContainer" parent="UI/GraveyardPanel" unique_id=1509443616]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 50.0
+offset_right = 236.0
+offset_bottom = 78.0
+theme_override_constants/separation = 4
+
+[node name="BlackGraveyardLabel" type="Label" parent="UI/GraveyardPanel" unique_id=1857317793]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 84.0
+offset_right = 236.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.6)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 6
+text = "BLACK"
+
+[node name="BlackGraveyardFlow" type="HBoxContainer" parent="UI/GraveyardPanel" unique_id=1439972652]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 98.0
+offset_right = 236.0
+offset_bottom = 126.0
+theme_override_constants/separation = 4
+
+[node name="DeckPile" type="Button" parent="UI" unique_id=616323303]
+visible = false
+offset_left = 1015.0
+offset_top = 270.0
+offset_right = 1115.0
+offset_bottom = 390.0
+mouse_default_cursor_shape = 2
+script = ExtResource("9_cardvis")
+mode = 0
+
+[node name="CardInfoPanel" type="Panel" parent="UI" unique_id=1158541154]
+offset_left = 1004.0
+offset_top = 104.0
+offset_right = 1256.0
+offset_bottom = 632.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="CardInfoTitle" type="Label" parent="UI/CardInfoPanel" unique_id=2080004032]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 236.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.6)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 12
+text = "—"
+
+[node name="CardInfoDesc" type="Label" parent="UI/CardInfoPanel" unique_id=1268824327]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 236.0
+offset_bottom = 512.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.55)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+text = "Hover a card to see its description."
+autowrap_mode = 3
+
+[node name="StatusNotifyPanel" type="Panel" parent="UI" unique_id=479922542]
+offset_left = 920.0
+offset_top = 24.0
+offset_right = 1256.0
+offset_bottom = 75.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="StatusNotifyHeader" type="Label" parent="UI/StatusNotifyPanel" unique_id=901792364]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 320.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.6)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "NOTICE"
+horizontal_alignment = 1
+
+[node name="CardStatusLabel" type="Label" parent="UI/StatusNotifyPanel" unique_id=215247652]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 22.0
+offset_right = 320.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.9)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HandList" type="HBoxContainer" parent="UI" unique_id=1311947123]
+offset_left = 400.0
+offset_top = 664.0
+offset_right = 880.0
+offset_bottom = 754.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="DiscardDrawButton" type="Button" parent="UI" unique_id=1344594603]
+offset_left = 584.0
+offset_top = 685.0
+offset_right = 696.0
+offset_bottom = 755.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "RECYCLE"
+
+[node name="ConfirmDiscardButton" type="Button" parent="UI" unique_id=9146861]
+visible = false
+offset_left = 584.0
+offset_top = 685.0
+offset_right = 640.0
+offset_bottom = 755.0
+theme_override_colors/font_color = Color(0.094, 0.063, 0.137, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_primary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_primary_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_primary_hover")
+text = "DISCARD (0)"
+
+[node name="CancelDiscardButton" type="Button" parent="UI" unique_id=218796338]
+visible = false
+offset_left = 640.0
+offset_top = 685.0
+offset_right = 696.0
+offset_bottom = 755.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "CANCEL"
+
+[node name="BackMenuButton" type="Button" parent="UI" unique_id=297846804]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 134.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_backmenu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_backmenu_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_backmenu_hover")
+text = "< MENU"
+
+[node name="RestartButton" type="Button" parent="UI" unique_id=2096855957]
+offset_left = 150.0
+offset_top = 24.0
+offset_right = 270.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_backmenu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_backmenu_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_backmenu_hover")
+text = "RESTART"
+
+[node name="RestartConfirmDialog" type="ConfirmationDialog" parent="UI" unique_id=33417529]
+title = "Restart Match"
+initial_position = 1
+size = Vector2i(380, 150)
+ok_button_text = "Restart"
+dialog_text = "Are you sure you want to restart this match? All progress will be lost."
+cancel_button_text = "Keep Playing"
+
+[node name="Control" type="Control" parent="UI" unique_id=1754118793]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DimBackground" type="ColorRect" parent="UI/Control" unique_id=1159587211]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.039, 0.024, 0.059, 0.78)
+
+[node name="OverlayPanel" type="Panel" parent="UI/Control" unique_id=1275752511]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -192.0
+offset_right = 260.0
+offset_bottom = 192.0
+pivot_offset = Vector2(260, 192)
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="ResultIcon" type="TextureRect" parent="UI/Control" unique_id=1953968574]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -160.0
+offset_right = 32.0
+offset_bottom = -96.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ResultTitle" type="Label" parent="UI/Control" unique_id=814798993]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -82.0
+offset_right = 220.0
+offset_bottom = -32.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 30
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultSubtitle" type="Label" parent="UI/Control" unique_id=1430235495]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -24.0
+offset_right = 220.0
+offset_bottom = 2.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.85)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 12
+text = "FINISHED ON TURN 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="UI/Control" unique_id=996191378]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 14.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(1, 0.71, 0.439, 0.4)
+
+[node name="PlayAgainButton" type="Button" parent="UI/Control" unique_id=163486577]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 108.0
+offset_right = -10.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(0.094, 0.063, 0.137, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_primary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_primary_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_primary_hover")
+text = "PLAY AGAIN"
+
+[node name="ExitButton" type="Button" parent="UI/Control" unique_id=1847666865]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = 108.0
+offset_right = 220.0
+offset_bottom = 156.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "EXIT"
+
+[node name="SidePanel" type="Control" parent="UI" unique_id=1624866283]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBG" type="ColorRect" parent="UI/SidePanel" unique_id=434612159]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.039, 0.024, 0.059, 0.88)
+
+[node name="TitleShadow" type="Label" parent="UI/SidePanel" unique_id=1922007955]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 114.0
+offset_right = 400.0
+offset_bottom = 164.0
+theme_override_colors/font_color = Color(0, 0, 0, 0.35)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 30
+text = "CHOOSE YOUR SIDE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SideTitle" type="Label" parent="UI/SidePanel" unique_id=182112498]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 110.0
+offset_right = 400.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 30
+text = "CHOOSE YOUR SIDE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SideSubtitle" type="Label" parent="UI/SidePanel" unique_id=1315262458]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 172.0
+offset_right = 400.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.6)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 10
+text = "SELECT THE ARMY YOU WILL COMMAND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardsRow" type="HBoxContainer" parent="UI/SidePanel" unique_id=688624393]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 160.0
+theme_override_constants/separation = 60
+
+[node name="WhiteCard" type="Button" parent="UI/SidePanel/CardsRow" unique_id=1767644388]
+custom_minimum_size = Vector2(280, 340)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_side_card")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_side_card_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_side_card_hover")
+
+[node name="KingIcon" type="TextureRect" parent="UI/SidePanel/CardsRow/WhiteCard" unique_id=1286697450]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 190.0
+texture = ExtResource("7_wking")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardTitle" type="Label" parent="UI/SidePanel/CardsRow/WhiteCard" unique_id=840624859]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 200.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0.965, 0.91, 0.835, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "WHITE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardSub" type="Label" parent="UI/SidePanel/CardsRow/WhiteCard" unique_id=1765348780]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 248.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.85)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+text = "MOVES FIRST"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlackCard" type="Button" parent="UI/SidePanel/CardsRow" unique_id=104232141]
+custom_minimum_size = Vector2(280, 340)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_side_card")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_side_card_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_side_card_hover")
+
+[node name="KingIcon" type="TextureRect" parent="UI/SidePanel/CardsRow/BlackCard" unique_id=2051530968]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 190.0
+texture = ExtResource("8_bking")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardTitle" type="Label" parent="UI/SidePanel/CardsRow/BlackCard" unique_id=1915620379]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 200.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0.965, 0.91, 0.835, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "BLACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardSub" type="Label" parent="UI/SidePanel/CardsRow/BlackCard" unique_id=616569820]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 248.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.85)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+text = "MOVES SECOND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackSideButton" type="Button" parent="UI/SidePanel" unique_id=1343115929]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 28.0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_backmenu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_backmenu_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_backmenu_hover")
+text = "BACK"
+
+[node name="PromotionPanel" type="Control" parent="UI" unique_id=1557664139]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBGP" type="ColorRect" parent="UI/PromotionPanel" unique_id=1163312170]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.039, 0.024, 0.059, 0.8)
+
+[node name="PromoBox" type="Panel" parent="UI/PromotionPanel" unique_id=397939949]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -175.0
+offset_right = 295.0
+offset_bottom = 145.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="PromoTitle" type="Label" parent="UI/PromotionPanel/PromoBox" unique_id=1669522294]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "PAWN PROMOTION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromoSub" type="Label" parent="UI/PromotionPanel/PromoBox" unique_id=527669657]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 58.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 0.75)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 8
+text = "CHOOSE A PIECE TO PROMOTE YOUR PAWN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QueenIcon" type="TextureRect" parent="UI/PromotionPanel/PromoBox" unique_id=352631544]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 85.0
+offset_right = 130.0
+offset_bottom = 195.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RookIcon" type="TextureRect" parent="UI/PromotionPanel/PromoBox" unique_id=453586420]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 85.0
+offset_right = 270.0
+offset_bottom = 195.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KnightIcon" type="TextureRect" parent="UI/PromotionPanel/PromoBox" unique_id=811581519]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 85.0
+offset_right = 410.0
+offset_bottom = 195.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BishopIcon" type="TextureRect" parent="UI/PromotionPanel/PromoBox" unique_id=1794525753]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 85.0
+offset_right = 550.0
+offset_bottom = 195.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="QueenBtn" type="Button" parent="UI/PromotionPanel/PromoBox" unique_id=1959714427]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 205.0
+offset_right = 130.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0.094, 0.063, 0.137, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_primary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_primary_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_primary_hover")
+text = "QUEEN"
+
+[node name="RookBtn" type="Button" parent="UI/PromotionPanel/PromoBox" unique_id=1521427179]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 205.0
+offset_right = 270.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "ROOK"
+
+[node name="KnightBtn" type="Button" parent="UI/PromotionPanel/PromoBox" unique_id=1953439016]
+layout_mode = 0
+offset_left = 295.0
+offset_top = 205.0
+offset_right = 410.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "KNIGHT"
+
+[node name="BishopBtn" type="Button" parent="UI/PromotionPanel/PromoBox" unique_id=254190199]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 205.0
+offset_right = 550.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0.863, 0.796, 0.925, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+text = "BISHOP"
+
+[node name="ActiveTurnLabel" type="Label" parent="UI" unique_id=802788356]
+offset_left = 460.0
+offset_top = 70.0
+offset_right = 820.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.75)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "YOUR TURN"
+horizontal_alignment = 1
+
+[node name="DeckLabel" type="Label" parent="UI" unique_id=889821796]
+visible = false
+offset_left = 1015.0
+offset_top = 248.0
+offset_right = 1115.0
+offset_bottom = 268.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.7)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "DECK"
+horizontal_alignment = 1
+
+[node name="CardInfoSectionLabel" type="Label" parent="UI" unique_id=320239994]
+offset_left = 1020.0
+offset_top = 116.0
+offset_right = 1240.0
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.6)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "CARD INFO"
+
+[node name="WhiteHandPanel" type="Panel" parent="UI" unique_id=163485739]
+offset_left = 24.0
+offset_top = 644.0
+offset_right = 426.0
+offset_bottom = 783.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="WhiteHandList" type="HBoxContainer" parent="UI" unique_id=76423938]
+visible = false
+offset_left = 40.0
+offset_top = 680.0
+offset_right = 344.0
+offset_bottom = 740.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BlackHandPnl" type="Panel" parent="UI" unique_id=1794133842]
+offset_left = 839.0
+offset_top = 644.0
+offset_right = 1256.0
+offset_bottom = 785.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_turnlabel")
+
+[node name="BlackHandList" type="HBoxContainer" parent="UI" unique_id=1239619698]
+visible = false
+offset_left = 936.0
+offset_top = 680.0
+offset_right = 1240.0
+offset_bottom = 740.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="WhiteSPLabel" type="Label" parent="UI" unique_id=978625886]
+visible = false
+offset_left = 40.0
+offset_top = 656.0
+offset_right = 260.0
+offset_bottom = 674.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.75)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "WHITE SP: 0 / 4"
+
+[node name="WhiteSPPips" type="Control" parent="UI" unique_id=1250989661]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 260.0
+offset_top = 658.0
+offset_right = 344.0
+offset_bottom = 674.0
+script = ExtResource("10_sppips")
+
+[node name="BlackSPLabel" type="Label" parent="UI" unique_id=1068590765]
+visible = false
+offset_left = 936.0
+offset_top = 656.0
+offset_right = 1156.0
+offset_bottom = 674.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.75)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "BLACK SP: 0 / 4"
+
+[node name="BlackSPPips" type="Control" parent="UI" unique_id=991243879]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1156.0
+offset_top = 658.0
+offset_right = 1240.0
+offset_bottom = 674.0
+script = ExtResource("10_sppips")
+
+[node name="PlayerSPLabel" type="Label" parent="UI" unique_id=348707417]
+offset_left = 400.0
+offset_top = 758.0
+offset_right = 880.0
+offset_bottom = 774.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 0.75)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 7
+text = "SP: 0 / 4"
+horizontal_alignment = 1
+
+[node name="PlayerSPPips" type="Control" parent="UI" unique_id=229105568]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 603.0
+offset_top = 780.0
+offset_right = 677.0
+offset_bottom = 794.0
+script = ExtResource("10_sppips")
+
+[node name="CoordLabel" type="Label" parent="UI" unique_id=160412159]
+visible = false
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(1, 0.71, 0.439, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 10
+
+[connection signal="pressed" from="UI/DeckPile" to="." method="_on_deck_pile_pressed"]
+[connection signal="pressed" from="UI/DiscardDrawButton" to="." method="_on_discard_draw_pressed"]
+[connection signal="pressed" from="UI/ConfirmDiscardButton" to="." method="_on_confirm_discard_pressed"]
+[connection signal="pressed" from="UI/CancelDiscardButton" to="." method="_on_cancel_discard_pressed"]
+[connection signal="pressed" from="UI/BackMenuButton" to="." method="_on_back_menu_pressed"]
+[connection signal="pressed" from="UI/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="confirmed" from="UI/RestartConfirmDialog" to="." method="_on_restart_confirmed"]
+[connection signal="pressed" from="UI/Control/PlayAgainButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/SidePanel/CardsRow/WhiteCard" to="." method="_on_side_white_pressed"]
+[connection signal="pressed" from="UI/SidePanel/CardsRow/BlackCard" to="." method="_on_side_black_pressed"]
+[connection signal="pressed" from="UI/SidePanel/BackSideButton" to="." method="_on_back_side_pressed"]
+[connection signal="pressed" from="UI/PromotionPanel/PromoBox/QueenBtn" to="." method="_on_promote_queen"]
+[connection signal="pressed" from="UI/PromotionPanel/PromoBox/RookBtn" to="." method="_on_promote_rook"]
+[connection signal="pressed" from="UI/PromotionPanel/PromoBox/KnightBtn" to="." method="_on_promote_knight"]
+[connection signal="pressed" from="UI/PromotionPanel/PromoBox/BishopBtn" to="." method="_on_promote_bishop"]

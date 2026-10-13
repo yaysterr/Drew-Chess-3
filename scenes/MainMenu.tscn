@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3x1m2nq7vwjk"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_menu"]
+[ext_resource type="Script" path="res://scripts/MainMenuChecker.gd" id="2_checker"]
+[ext_resource type="FontFile" path="res://fonts/PressStart2P-Regular.ttf" id="2_font"]
+[ext_resource type="Texture2D" path="res://pieces_new/W-Knight.png" id="3_wknight"]
+[ext_resource type="Texture2D" path="res://pieces_new/B-knight.png" id="4_bknight"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.196, 0.161, 0.278, 1.0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1.0, 0.710, 0.439, 1.0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.267, 0.220, 0.380, 1.0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1.0, 0.800, 0.580, 1.0)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 800.0
+color = Color(0.122, 0.094, 0.176, 1.0)
+
+[node name="Checker" type="Node2D" parent="."]
+script = ExtResource("2_checker")
+
+[node name="TitleShadow" type="Label" parent="."]
+offset_left = 0.0
+offset_top = 286.0
+offset_right = 1280.0
+offset_bottom = 390.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(0.0, 0.0, 0.0, 0.35)
+text = "DREW CHESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+offset_left = -6.0
+offset_top = 280.0
+offset_right = 1274.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1.0, 0.710, 0.439, 1.0)
+text = "DREW CHESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DividerLeft" type="TextureRect" parent="."]
+offset_left = 520.0
+offset_top = 404.0
+offset_right = 600.0
+offset_bottom = 444.0
+texture = ExtResource("3_wknight")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+modulate = Color(1.0, 0.710, 0.439, 0.85)
+
+[node name="DividerLine" type="ColorRect" parent="."]
+offset_left = 440.0
+offset_top = 422.0
+offset_right = 840.0
+offset_bottom = 423.5
+color = Color(1.0, 0.710, 0.439, 0.4)
+
+[node name="DividerRight" type="TextureRect" parent="."]
+offset_left = 680.0
+offset_top = 404.0
+offset_right = 760.0
+offset_bottom = 444.0
+texture = ExtResource("4_bknight")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1.0, 0.710, 0.439, 0.85)
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 500.0
+offset_top = 490.0
+offset_right = 780.0
+offset_bottom = 560.0
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.965, 0.910, 0.835, 1.0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_hover")
+text = "PLAY"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]

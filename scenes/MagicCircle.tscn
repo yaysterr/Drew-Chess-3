@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://magic_circle_effect"]
+
+[ext_resource type="Script" path="res://scripts/magic_circle.gd" id="1_magic"]
+
+[node name="MagicCircle" type="Node2D"]
+script = ExtResource("1_magic")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
